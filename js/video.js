@@ -3,6 +3,10 @@
 
 var vid = document.getElementById("videoplayer");
 vid.removeAttribute("loop");
+vid.autoplay="false";
+
+
+
 document.getElementById("play").addEventListener("click", playVid);
 function playVid() {
     vid.play();
@@ -39,7 +43,7 @@ function fastVid(){
         window.alert("Video is at fastest speed!")
     }
     else{
-    console.log(video_speeds[speed_idx])
+    // console.log(video_speeds[speed_idx])
     vid.playbackRate = video_speeds[speed_idx];
     }
 }
@@ -60,14 +64,28 @@ function muteVid(){
 }
 document.getElementById("skip").addEventListener("click", skipVid);
 function skipVid(){
-
-    vid.currentTime = vid.currentTime  + 15;
+    seek_time = vid.currentTime + 15
+    if (seek_time > vid.duration){
+        // console.log("resetting frames:")
+        // console.log(vid.duration)
+        // console.log(vid.currentTime)
+        vid.currentTime = 0
+        pauseVid()
+        // console.log(vid.currentTime)
+    }
+    else{
+        // console.log("Skipping frames:")
+        // console.log(vid.currentTime)
+        vid.currentTime = seek_time;
+        // console.log(vid.currentTime)
+    }
+    
 }
 
 var volumeControl = document.getElementById('slider');
 document.getElementById("volume").innerText = volumeControl.value
 function setVolume(){
-    console.log(vid.volume)
+    
     vid.volume = this.value / 100;
     
 };
