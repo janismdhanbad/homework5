@@ -3,7 +3,7 @@
 
 var vid = document.getElementById("videoplayer");
 vid.removeAttribute("loop");
-vid.autoplay="false";
+vid.autoplay= false;
 
 
 
